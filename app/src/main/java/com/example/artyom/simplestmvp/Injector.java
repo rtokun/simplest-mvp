@@ -7,6 +7,7 @@ import android.preference.PreferenceManager;
 import com.example.artyom.simplestmvp.data.database.LocalDatabase;
 import com.example.artyom.simplestmvp.data.database.LocalDatabaseImpl;
 import com.example.artyom.simplestmvp.data.network.SomeNetworkService;
+import com.example.artyom.simplestmvp.data.network.WeatherNetworkService;
 import com.google.gson.Gson;
 
 import okhttp3.OkHttpClient;
@@ -25,6 +26,8 @@ public class Injector implements SingletonsProvider {
     private Context mAppContext;
 
     private SomeNetworkService mNetworkService;
+
+    private WeatherNetworkService mWeatherNetworkService;
 
     private LocalDatabase mLocalDatabase;
 
@@ -61,6 +64,24 @@ public class Injector implements SingletonsProvider {
         }
 
         return mNetworkService;
+    }
+
+    @Override
+    public WeatherNetworkService getWeatherNetworkService() {
+        if (mWeatherNetworkService == null) {
+            mWeatherNetworkService = initWeatherService();
+        }
+
+        return mWeatherNetworkService;
+    }
+
+    private WeatherNetworkService initWeatherService() {
+        return new Retrofit.Builder()
+                .addConverterFactory(GsonConverterFactory.create(getGson()))
+                .baseUrl("https://weather_base_url.com/")
+                .client(new OkHttpClient.Builder().build())
+                .build()
+                .create(WeatherNetworkService.class);
     }
 
     private SomeNetworkService initNetworkService() {

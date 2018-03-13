@@ -2,6 +2,7 @@ package com.example.artyom.simplestmvp;
 
 import com.example.artyom.simplestmvp.data.database.LocalDatabase;
 import com.example.artyom.simplestmvp.data.network.SomeNetworkService;
+import com.example.artyom.simplestmvp.data.network.WeatherNetworkService;
 import com.google.gson.Gson;
 
 /**
@@ -13,6 +14,8 @@ public interface SingletonsProvider {
     LocalDatabase getLocalDatabase();
 
     SomeNetworkService getSomeNetworkService();
+
+    WeatherNetworkService getWeatherNetworkService();
 
     Gson getGson();
 

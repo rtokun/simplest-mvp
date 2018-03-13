@@ -1,6 +1,7 @@
 package com.example.artyom.simplestmvp.ui.flow.main.view;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.Toolbar;
@@ -10,6 +11,7 @@ import com.example.artyom.simplestmvp.Injector;
 import com.example.artyom.simplestmvp.R;
 import com.example.artyom.simplestmvp.common.BaseActivity;
 import com.example.artyom.simplestmvp.data.model.SomeData;
+import com.example.artyom.simplestmvp.ui.flow.details.view.DetailsActivity;
 import com.example.artyom.simplestmvp.ui.flow.main.contract.MainContract;
 import com.example.artyom.simplestmvp.ui.flow.main.presenter.MainPresenter;
 
@@ -28,6 +30,10 @@ public class MainActivity extends BaseActivity
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(view -> {
             mPresenter.loadData(false);
+
+
+            Intent intent = DetailsActivity.getIntent("", "f", "fdv");
+            startActivity(intent);
         });
 
         mPresenter = new MainPresenter(Injector.getInstance().getSomeNetworkService(),
@@ -38,6 +44,7 @@ public class MainActivity extends BaseActivity
     @Override
     protected void onResume() {
         super.onResume();
+        mPresenter.loadData(true);
     }
 
     @Override
@@ -59,6 +66,11 @@ public class MainActivity extends BaseActivity
     @Override
     public void showSomeData(SomeData someData) {
         Toast.makeText(this, someData.getSomeName(), Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void showFunnyTest(String text) {
+
     }
 
     @Override

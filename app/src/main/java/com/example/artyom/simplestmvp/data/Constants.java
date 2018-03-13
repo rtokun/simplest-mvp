@@ -5,4 +5,5 @@ package com.example.artyom.simplestmvp.data;
  */
 
 public class Constants {
+
 }
