@@ -1,4 +1,4 @@
-package com.example.artyom.simplestmvp.ui.flow.main.contract;
+package com.example.artyom.simplestmvp.ui.flow.details.contract;
 
 import com.example.artyom.simplestmvp.common.BasePresenter;
 import com.example.artyom.simplestmvp.data.model.SomeData;
@@ -7,7 +7,7 @@ import com.example.artyom.simplestmvp.data.model.SomeData;
  * Created by artyom on 09/03/2018.
  */
 
-public interface MainContract {
+public interface DetailsContract {
 
     interface View extends BasePresenter.View {
 
@@ -15,16 +15,14 @@ public interface MainContract {
 
         void showDialog(String dialogMessage);
 
-        void showSomeData(SomeData someData);
+        void showDetails(String funnyDetails);
 
         /* Here you add another methods that view should do*/
-        void showFunnyTest(String text);
 
     }
 
     interface Presenter {
 
-        void loadData(boolean forceRefresh);
     }
 
 }
